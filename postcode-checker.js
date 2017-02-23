@@ -26,8 +26,8 @@ var PostcodeChecker = {
   performCheckAgainstNonMainlandArray: function(postcode){
     var failedCheck = false;
 
-    for (var x = 0; x < PostcodeChecker.nonMainlandPostcodes.length; x++) {
-      var postcodeArray = PostcodeChecker.nonMainlandPostcodes[x];
+    for (var x = 0; x < this.nonMainlandPostcodes.length; x++) {
+      var postcodeArray = this.nonMainlandPostcodes[x];
 
       if (!failedCheck) {
 
@@ -51,9 +51,9 @@ var PostcodeChecker = {
     }
 
     if (failedCheck) {
-      PostcodeChecker.postcodeIsInvalid();
+      this.postcodeIsInvalid();
     } else {
-      PostcodeChecker.performCheckAgainstApi(postcode);
+      this.performCheckAgainstApi(postcode);
     }
 
   },
@@ -61,7 +61,7 @@ var PostcodeChecker = {
   performCheckAgainstApi: function(postcode){
     var isValidPostcode = false;
 
-    $.get(PostcodeChecker.api + "" + postcode, function(response){
+    $.get(this.api + "" + postcode, function(response){
       if (response.status === "OK") {
         
         var address_components = response.results[0].address_components;
