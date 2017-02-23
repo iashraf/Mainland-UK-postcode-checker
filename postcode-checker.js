@@ -1,4 +1,4 @@
-var PostcodeGeocode = {
+var PostcodeChecker = {
   api: "https://maps.googleapis.com/maps/api/geocode/json?&address=",
 
   nonMainlandPostcodes: [
@@ -26,8 +26,8 @@ var PostcodeGeocode = {
   performCheckAgainstNonMainlandArray: function(postcode){
     var failedCheck = false;
 
-    for (var x = 0; x < PostcodeGeocode.nonMainlandPostcodes.length; x++) {
-      var postcodeArray = PostcodeGeocode.nonMainlandPostcodes[x];
+    for (var x = 0; x < PostcodeChecker.nonMainlandPostcodes.length; x++) {
+      var postcodeArray = PostcodeChecker.nonMainlandPostcodes[x];
 
       if (!failedCheck) {
 
@@ -51,9 +51,9 @@ var PostcodeGeocode = {
     }
 
     if (failedCheck) {
-      PostcodeGeocode.postcodeIsInvalid();
+      PostcodeChecker.postcodeIsInvalid();
     } else {
-      PostcodeGeocode.performCheckAgainstApi(postcode);
+      PostcodeChecker.performCheckAgainstApi(postcode);
     }
 
   },
@@ -61,7 +61,7 @@ var PostcodeGeocode = {
   performCheckAgainstApi: function(postcode){
     var isValidPostcode = false;
 
-    $.get(PostcodeGeocode.api + "" + postcode, function(response){
+    $.get(PostcodeChecker.api + "" + postcode, function(response){
       if (response.status === "OK") {
         
         var address_components = response.results[0].address_components;
@@ -77,9 +77,9 @@ var PostcodeGeocode = {
         }
 
         if (isValidPostcode) {
-          PostcodeGeocode.postcodeIsValid();
+          PostcodeChecker.postcodeIsValid();
         } else {
-          PostcodeGeocode.postcodeIsInvalid();
+          PostcodeChecker.postcodeIsInvalid();
         }
 
       }
@@ -108,7 +108,7 @@ var PostcodeGeocode = {
 
       if (postcode != ""){
         // pass postcode into function checking it against offshore UK isles
-        PostcodeGeocode.performCheckAgainstNonMainlandArray(postcode);
+        PostcodeChecker.performCheckAgainstNonMainlandArray(postcode);
       }
 
     });
@@ -122,5 +122,5 @@ var PostcodeGeocode = {
 };
 
 $(function(){
-  PostcodeGeocode.init();
+  PostcodeChecker.init();
 });
