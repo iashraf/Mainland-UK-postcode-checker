@@ -9,7 +9,7 @@ var PostcodeChecker = {
     for (var i = 0; i < this.nonMainlandPostcodes.length; i++) {
       var postcodeStartString = this.nonMainlandPostcodes[i];
 
-      if (postcode.indexOf(postcodeStartString) == 0) {
+      if (postcode.indexOf(postcodeStartString) === 0) {
         failedCheck = true;
         break;
       }
