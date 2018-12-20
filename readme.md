@@ -12,7 +12,7 @@ Especially handy for UK based online shops who don't want to ship offshore.
 ##Quick run-through
 
 - User provides postcode
-- Postcode is checked against a pre-defined like of non-mainland British isles postcodes
+- Postcode is checked against a pre-defined list of non-mainland British isles postcodes
 - If postcode matches any in the list, then it's **not** part of mainland UK, so show a message (or do something) and exit
 - If postcode doesn't match, then pass postcode through to Google Geocode API
 - Check API response to see if it includes the terms "England", "Scotland" or "Wales"
